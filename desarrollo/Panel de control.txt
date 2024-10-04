@@ -1,0 +1,63 @@
+público = visitantes no autenticados
+general = visitantes autenticados (usuarios/administrador)
+usuario = visitante autenticado con restricciones
+administrador = usuario sin restricciones
+
+***ESTRUCTURA DEL SITIO***
+Inicio (público)
+Mi cuenta
+ ├── Datos registrados (general)
+ └── Configuración (general)
+Clientes
+ └── Vista de tabla administrador (administrador)
+Panel de Control (general)
+ ├── Dashboard
+ │    ├── Estructura (mapa) (administrador)
+ │    ├── Ambiente de pruebas (administrador)
+ │    ├── Vista de tablas de resumen global de datos (administrador)
+ │    ├── Vista de tablas de todas las transacciones (administrador)
+ │    ├── Vista de tablas de resumen de datos (usuario)
+ │    └── Vista de tablas de transacciones propias (usuario)
+ ├── Seguimiento de Proyectos
+ │    ├── Formulario de búsqueda (general)
+ │    ├── En Proceso
+ │    │    ├── Vista de tabla (administrador)
+ │    │    ├── Vista de tabla (usuario)
+ │    │    └── Formulario para Insertar Información de Avances (administrador)
+ │    ├── En proceso (trabajando) -> De la tabla <proyectos>: en curso
+ │    │    ├── Vista de tabla (administrador)
+ │    │    └── Vista de tabla (usuario)
+ │    ├── Formalizados -> De la tabla <proyectos>: formalizado
+ │    │    ├── Vista de tabla (administrador)
+ │    │    └── Vista de tabla (usuario)
+ │    ├── En formalización -> De la tabla <formalizaciones>
+ │    │    ├── Vista de tabla (administrador)
+ │    │    └── Vista de tabla (usuario)
+ │    └── Completados
+ │         ├── Formulario de búsqueda (general)
+ │         ├── Vista de tabla (administrador)
+ │         └── Vista de tabla (usuario)
+ ├── Soporte
+ │    ├── Crear ticket nuevo (general)
+ │    ├── Mi bandeja (usuario)
+ │    ├── Mi bandeja (administrador)
+ │    └── Formulario de búsqueda (general)
+ ├── Notificaciones
+ │    ├── Formulario de búsqueda (general)
+ │    ├── Bandeja (usuario)
+ │    ├── Crear notificación (administrador)
+ │    └── Historial (administrador)
+ ├── Archivos
+ │    ├── Formulario de búsqueda (general)
+ │    ├── Archivos (administrador)
+ │    ├── Contratos (usuario)
+ │    ├── Recursos (usuario)
+ │    ├── Facturas (usuario)
+ │    └── Comprobantes (usuario)
+Feedback (general)
+ ├── Crear encuesta (administrador)
+ └── Feedback (usuario)
+Contacto (público)
+FAQs (público)
+Ingresar (público)
+Registrarse (público)
