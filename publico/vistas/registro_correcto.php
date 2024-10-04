@@ -6,9 +6,9 @@ include_once './php/parametros/redireccion.inc.php';
 
 if (isset($_SESSION['registro_correcto'])) {
     $datos = $_SESSION['datos'];
-//     session_destroy();
-// } else {
-//     redireccion::redirigir(INICIO);
+    session_destroy();
+} else {
+    redireccion::redirigir(INICIO);
 }
 
 $titulo = 'Inicio';
@@ -20,7 +20,7 @@ include_once './publico/plantillas/menu_html.inc.php';
     <div class="alert alert-info bg-light" role="alert">
         <h5><i class="bi bi-check-circle-fill mx-2"></i>Registro correcto!</h5>
         <hr>
-        <h2>Hola <?php echo $datos[0]?>.</h2>
+        <h2>Hola <?php echo $datos[0] . ' / ' . $datos[1] . ' / ' . $datos[2]; ?>.</h2>
         <p class="my-3">¡Gracias por unirte a SwiftCode! Estamos encantados de tenerte con nosotros.</p>
         <h5 class="pb-2">Aquí tienes algunas cosas que puedes hacer para empezar:</h5>
         <div class="accordion" id="accordionExample">
