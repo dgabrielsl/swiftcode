@@ -5,6 +5,7 @@
         <li><a href="<?php echo CONTROL; ?>" class="nav-link px-3">Panel de control</a></li>
         <li><a href="<?php echo SERVICIOS; ?>" class="nav-link px-3">Servicios</a></li>
         <li><a href="<?php echo PROYECTOS; ?>" class="nav-link px-3">Proyectos</a></li>
+        <li><a href="<?php echo PRUEBAS; ?>" class="nav-link px-3 text-danger">Pruebas</a></li>
         <li><a href="<?php echo BLOG; ?>" class="nav-link px-3">Blog</a></li>
         <li><a href="<?php echo FAQS; ?>" class="nav-link px-3">FAQs</a></li>
     </ul>

@@ -1,6 +1,6 @@
 <?php
-include_once './php/repositorios/repositorio_usuario.inc.php';
-include_once './php/scripts/usuario_aleatorio.inc.php';
+include_once './php/repositorios/repositorio_usuarios.inc.php';
+include_once './php/scripts/texto_aleatorio.inc.php';
 
 class validador {
     private $correo; private $usuario;
@@ -51,7 +51,7 @@ class validador {
             return $mensajes;
         }
 
-        if (repositorio_usuario::correo_existe($conexion, $correo)) {
+        if (repositorio_usuarios::correo_existe($conexion, $correo)) {
             $mensajes[] = 'Este correo ya se encuentra registrado.';
             $mensajes[] = 'Prueba <a href="' . INGRESAR . '"> iniciar sesión</a>.';
             return $mensajes;
@@ -136,7 +136,7 @@ class validador {
     public static function validar_usuario($conexion, $usuario) {
         $mensajes = [];
 
-            if (repositorio_usuario::usuario_existe($conexion, $usuario)) {
+            if (repositorio_usuarios::usuario_existe($conexion, $usuario)) {
                 $mensajes[] = 'Este nombre de usuario ya se encuentra en uso.';
                 $mensajes[] = 'Si dejas el campo en blanco generamos uno automáticamente, puedes modificarlo después.';
                 return $mensajes;

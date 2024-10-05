@@ -9,38 +9,23 @@ include_once './php/scripts/validador.inc.php';
 include_once './php/scripts/enviar_correo.inc.php';
 
 include_once './php/modelos/modelo_usuario.inc.php';
-include_once './php/modelos/modelo_usuario_transacciones.inc.php';
-
-include_once './php/repositorios/repositorio_usuario.inc.php';
-include_once './php/repositorios/repositorio_transacciones.inc.php';
+include_once './php/repositorios/repositorio_usuarios.inc.php';
 
 session_start();
 $conexion = conexion::abrir_conexion();
 
-$correo = $_POST['correo'];
-$usuario = $_POST['usuario'];
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$apellido_2 = $_POST['apellido_2'];
-$telefono = $_POST['telefono'];
-$telefono_secundario = $_POST['telefono_secundario'];
-$empresa = $_POST['empresa'];
-$correo_empresa = $_POST['correo_empresa'];
-$clave = $_POST['clave'];
-$clave_2 = $_POST['clave_2'];
-
 $_SESSION['campos'] = [
-    'correo' => $correo,
-    'usuario' => $usuario,
-    'nombre' => $nombre,
-    'apellido' => $apellido,
-    'apellido_2' => $apellido_2,
-    'telefono' => $telefono,
-    'telefono_secundario' => $telefono_secundario,
-    'empresa' => $empresa,
-    'correo_empresa' => $correo_empresa,
-    'clave' => $clave,
-    'clave_2' => $clave_2
+    $correo = $_POST['correo'],
+    $usuario = $_POST['usuario'],
+    $nombre = $_POST['nombre'],
+    $apellido = $_POST['apellido'],
+    $apellido_2 = $_POST['apellido_2'],
+    $telefono = $_POST['telefono'],
+    $telefono_secundario = $_POST['telefono_secundario'],
+    $empresa = $_POST['empresa'],
+    $correo_empresa = $_POST['correo_empresa'],
+    $clave = $_POST['clave'],
+    $clave_2 = $_POST['clave_2']
 ];
 
 $correcciones_correo = validador::validar_correo($conexion, $correo);
@@ -51,9 +36,10 @@ if (!empty($usuario)) {
     $_SESSION['usuario_autorizado'] = $usuario_autorizado;
 } else {
     do {
-        $usuario_de_sistema = usuario_aleatorio::generar_string_aleatorio();
+        $usuario_de_sistema = texto_aleatorio::generar_string_aleatorio();
         $correcciones_usuario = validador::validar_usuario($conexion, $usuario_de_sistema);
-    } while (count($correcciones_usuario));
+        if (count($correcciones_usuario) < 1) break;
+    } while (count($correcciones_usuario) < 1);
     $usuario_autorizado = $usuario_de_sistema;
     $_SESSION['usuario_autorizado'] = $usuario_autorizado;
 }
@@ -116,25 +102,13 @@ if (!count($correcciones_correo) && !count($correcciones_usuario) && !count($cor
     $fecha = $creado -> format('Y-m-d H:i:s');
 
     $usuario = new modelo_usuario('', $correo, $usuario_autorizado, $clave, $nombre, $apellido, $apellido_2, $telefono, $telefono_secundario, $empresa, $correo_empresa, $cuenta, $estado, $fecha);
-    repositorio_usuario::insertar_registro($conexion, $usuario);
-
-    $id_usuario = $usuario -> get_id();
+    repositorio_usuarios::insertar_registro($conexion, $usuario);
     
-    $transaccion = new modelo_usuario_transacciones('', $id_usuario, 1, $fecha);
-    var_dump($transaccion);
-    
-    repositorio_transacciones::insertar_registro_usuario($conexion, $transaccion);
-
-    // repositorio_transacciones::insertar_registro($conexion, $notificacion);
-    // transacciones_notificaciones::insertar_registro($conexion, $transaccion);
-    // repositorio_transacciones::insertar_registro($conexion, $transaccion);
-    // transacciones_enlaces::insertar_registro($conexion, $transaccion);
-
-    // session_destroy();
-    // session_start();
-    // $_SESSION['registro_correcto'] = 1;
-    // $_SESSION['datos'] = [$nombre, $usuario_autorizado, $correo];
-    // redireccion::redirigir(REGISTRADO);
+    session_destroy();
+    session_start();
+    $_SESSION['registro_correcto'] = 1;
+    $_SESSION['datos'] = [$nombre, $usuario_autorizado, $correo];
+    redireccion::redirigir(REGISTRADO);
 }
 
 $_SESSION['correcciones_correo'] = $correcciones_correo;
@@ -149,5 +123,5 @@ $_SESSION['correcciones_correo_empresa'] = $correcciones_correo_empresa;
 $_SESSION['correcciones_clave'] = $correcciones_clave;
 $_SESSION['correcciones_confirmar_clave'] = $correcciones_confirmar_clave;
 
-// redireccion::redirigir(REGISTRARSE);
+redireccion::redirigir(REGISTRARSE);
 conexion::cerrar_conexion();

@@ -40,6 +40,7 @@ class modelo_usuario {
     public function get_creado() { return $this -> creado; }
     
     // Setters.
+    public function set_id($id) { $this -> id = $id; }
     public function set_correo($correo) { $this -> correo = $correo; }
     public function set_usuario($usuario) { $this -> usuario = $usuario; }
     public function set_clave($clave) { $this -> clave = $clave; }
@@ -52,5 +53,4 @@ class modelo_usuario {
     public function set_correo_empresa($correo_empresa) { $this -> correo_empresa = $correo_empresa; }
     public function set_cuenta($cuenta) { $this -> cuenta = $cuenta; }
     public function set_estado($estado) { $this -> estado = $estado; }
-    public function set_creado($creado) { $this -> creado = $creado; }
 }

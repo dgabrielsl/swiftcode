@@ -1,5 +1,5 @@
 <?php
-class repositorio_usuario {
+class repositorio_usuarios {
     public static function consultar_registros_general($conexion) {
         $usuarios = [];
         if (isset($conexion)) {
@@ -99,7 +99,37 @@ class repositorio_usuario {
                 $sentencia -> bindParam(':creado', $creado, PDO::PARAM_STR);
                 
                 $transaccion = $sentencia -> execute();
+                $usuario -> set_id($conexion -> lastInsertId());
+
+                include_once './php/modelos/modelo_usuario.inc.php';
+                include_once './php/modelos/modelo_usuario_transacciones.inc.php';
                 
+                include_once './php/modelos/modelo_enlace.inc.php';
+                include_once './php/modelos/modelo_enlace_transacciones.inc.php';
+
+                include_once 'repositorio_transacciones.inc.php';
+                include_once 'repositorio_enlaces.inc.php';
+                
+                $id_usuario = (int) $usuario -> get_id();
+                $nombre_completo = $nombre . ' ' . $apellido . ' ' . $apellido_2;
+                $tipo_evento = 1;
+                $registro_1 = new modelo_usuario_transacciones('', $id_usuario, $usuario_recuperado, $nombre_completo, $correo, $telefono, $tipo_evento, $creado);
+                repositorio_transacciones::registrar_transaccion_usuario($conexion, $registro_1);
+
+                $servicio = 1;
+                $enlace_codificado = texto_aleatorio::generar_enlace_codificado(100, $usuario_recuperado);
+                $consumido = false;
+                $registro_2 = new modelo_enlace('', $id_usuario, $usuario_recuperado, $servicio, $enlace_codificado, $consumido, $creado);
+                repositorio_enlaces::insertar_registro($conexion, $registro_2);
+                $registro_2 -> set_id($conexion -> lastInsertId());
+                $id_enlace = (int) $registro_2 -> get_id();
+
+                $servicio = 1;
+                $estado = 1;
+                $registro_3 = new modelo_enlace_transacciones('', $id_usuario, $id_enlace, $usuario_recuperado, $servicio, $estado, $creado);
+                var_dump($registro_3);
+                repositorio_transacciones::registrar_transaccion_enlace($conexion, $registro_3);
+
             } catch (PDOException $ex) {
                 print 'ERROR: ' . $ex -> getMessage();
             }

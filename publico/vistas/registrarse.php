@@ -7,16 +7,15 @@ include_once './php/parametros/control_sesion.inc.php';
 
 include_once './php/scripts/validador.inc.php';
 include_once './php/modelos/modelo_usuario.inc.php';
-include_once './php/repositorios/repositorio_usuario.inc.php';
+include_once './php/repositorios/repositorio_usuarios.inc.php';
 
 $titulo = 'Registrarse';
 include_once './publico/plantillas/encabezado_html.inc.php';
 include_once './publico/plantillas/menu_html.inc.php';
 
 $datos = false;
-$campos = '';
 $correcciones = '';
-$sesion = [];
+$campos = [];
 
 conexion::abrir_conexion();
 

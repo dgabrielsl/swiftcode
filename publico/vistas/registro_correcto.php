@@ -99,8 +99,6 @@ include_once './publico/plantillas/menu_html.inc.php';
         </div>
     </div>
 </div>
-
-
 <?php
 include_once './publico/plantillas/cierre_html.inc.php';
 ?>

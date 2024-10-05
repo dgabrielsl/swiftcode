@@ -30,6 +30,7 @@ define('SALIR', SERVIDOR . '/salir');
 define('CONTACTO', SERVIDOR . '/formulario-de-contacto');
 define('REGISTRADO', SERVIDOR . '/registro-correcto');
 define('ENVIAR_CORREO', SERVIDOR . '/enviar-correo');
+define('PRUEBAS', SERVIDOR . '/pruebas');
 // define('', SERVIDOR . '');
 
 # Controladores/repositorios.

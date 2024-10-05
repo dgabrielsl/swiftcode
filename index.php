@@ -60,6 +60,9 @@ if ($secciones[0] == 'swiftcode') {
             case 'enviar-correo':
                 $vista_de_usuario = 'php/scripts/enviar_correo.php';
                 break;
+            case 'pruebas':
+                $vista_de_usuario = 'php/scripts/pruebas.php';
+                break;
         }
     }
 } else {
