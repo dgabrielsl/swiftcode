@@ -23,18 +23,18 @@ if (isset($_SESSION['campos']) && isset($_SESSION['campos'])) {
     $datos = true;
     $campos = $_SESSION['campos'];
     $correcciones_correo = $_SESSION['correcciones_correo'];
-    $correcciones_usuario = $_SESSION['correcciones_usuario'];
+    $correcciones_alias = $_SESSION['correcciones_alias'];
     $correcciones_nombre = $_SESSION['correcciones_nombre'];
     $correcciones_nombre = $_SESSION['correcciones_nombre'];
-    $correcciones_apellido = $_SESSION['correcciones_apellido'];
+    $correcciones_apellido_1 = $_SESSION['correcciones_apellido_1'];
     $correcciones_apellido_2 = $_SESSION['correcciones_apellido_2'];
     $correcciones_telefono = $_SESSION['correcciones_telefono'];
-    $correcciones_telefono_2 = $_SESSION['correcciones_telefono_2'];
+    $correcciones_telefono_2 = $_SESSION['correcciones_telefono_empresa'];
     $correcciones_empresa = $_SESSION['correcciones_empresa'];
     $correcciones_correo_empresa = $_SESSION['correcciones_correo_empresa'];
     $correcciones_clave = $_SESSION['correcciones_clave'];
     $correcciones_confirmar_clave = $_SESSION['correcciones_confirmar_clave'];
-    $usuario_autorizado = $_SESSION['usuario_autorizado'];
+    $alias = $_SESSION['alias'];
 }
 
 session_destroy();
@@ -70,12 +70,12 @@ session_destroy();
                     <div class="col">
                         <div class="input-group has-validation">
                             <span class="input-group-text">@</span>
-                            <div class="form-floating <?php if ($datos && count($correcciones_usuario)) echo 'is-invalid'; ?>">
-                                <input type="text" name="usuario" id="floatingInputGroup1" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elige un nombre de usuario único (puedes usar letras, números y guión bajo) o deja el campo en blanco y te generamos uno automáticamente."
-                                    class="form-control <?php if ($datos && count($correcciones_usuario)) echo 'is-invalid'; ?>"
+                            <div class="form-floating <?php if ($datos && count($correcciones_alias)) echo 'is-invalid'; ?>">
+                                <input type="text" name="alias" id="floatingInputGroup1" placeholder="Usuario" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elige un nombre de usuario único (puedes usar letras, números y guión bajo) o deja el campo en blanco y te generamos uno automáticamente."
+                                    class="form-control <?php if ($datos && count($correcciones_alias)) echo 'is-invalid'; ?>"
                                     <?php
-                                        if ($datos && $usuario_autorizado != '') {
-                                            echo 'value="' . $usuario_autorizado . '"';
+                                        if ($datos && $alias != '') {
+                                            echo 'value="' . $alias . '"';
                                         } else if ($datos) {
                                             echo 'value="'. $campos[1] . '"';
                                         }
@@ -83,7 +83,7 @@ session_destroy();
                             <label for="floatingInputGroup1">Usuario <span class="text-secondary">(opcional)</span></label>
                             </div>
                             <div class="invalid-feedback">
-                                <?php if ($datos) echo validador::escribir_mensajes($correcciones_usuario); ?>
+                                <?php if ($datos) echo validador::escribir_mensajes($correcciones_alias); ?>
                             </div>
                         </div>
                     </div>
@@ -102,12 +102,12 @@ session_destroy();
                     </div>
                     <div class="col">
                         <div class="form-floating has-validation">
-                            <input type="text" name="apellido" id="apellido1" placeholder="Apellido 1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Introduce tu primer apellido."
-                                class="form-control <?php if ($datos && count($correcciones_apellido)) echo 'is-invalid'; ?>"
+                            <input type="text" name="apellido_1" id="apellido1" placeholder="Apellido 1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Introduce tu primer apellido."
+                                class="form-control <?php if ($datos && count($correcciones_apellido_1)) echo 'is-invalid'; ?>"
                                 value="<?php if ($datos) echo ucwords(mb_strtolower($campos[3], 'UTF-8')); ?>">
                             <label for="apellido1">Apellido 1</label>
                             <div class="invalid-feedback">
-                                <?php if ($datos) echo validador::escribir_mensajes($correcciones_apellido); ?>
+                                <?php if ($datos) echo validador::escribir_mensajes($correcciones_apellido_1); ?>
                             </div>
                         </div>
                     </div>
@@ -137,7 +137,7 @@ session_destroy();
                     </div>
                     <div class="col">
                         <div class="form-floating has-validation">
-                            <input type="number" name="telefono_secundario" id="telefono2" placeholder="Teléfono 2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Proporciona un segundo número de teléfono."
+                            <input type="number" name="telefono_empresa" id="telefono2" placeholder="Teléfono 2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Proporciona un segundo número de teléfono."
                                 class="form-control <?php if ($datos && count($correcciones_telefono_2)) echo 'is-invalid'; ?>"
                                 value="<?php if ($datos) echo $campos[6]; ?>">
                             <label for="telefono2">Teléfono secundario <span class="text-secondary">(opcional)</span></label>

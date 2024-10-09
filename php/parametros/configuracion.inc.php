@@ -1,11 +1,12 @@
 <?php
 # Mi base de datos.
 define('SERVERNAME', 'localhost');
-define('DBONAME', 'dgsl_93_swiftcode');
+define('DBONAME', 'swiftcode');
 define('USERNAME', 'root');
 define('PASSWORD', '');
 
 # Vistas.
+// define('SERVIDOR', 'https://swiftcodepages.x10.mx');
 define('SERVIDOR', 'http://localhost/swiftcode');
 define('NO_DISPONIBLE', SERVIDOR . '/pagina-no-encontrada');
 define('INICIO', SERVIDOR);
@@ -31,6 +32,7 @@ define('CONTACTO', SERVIDOR . '/formulario-de-contacto');
 define('REGISTRADO', SERVIDOR . '/registro-correcto');
 define('ENVIAR_CORREO', SERVIDOR . '/enviar-correo');
 define('PRUEBAS', SERVIDOR . '/pruebas');
+define('GUIA_USUARIO_NUEVO', SERVIDOR . '/guia-de-usuario');
 // define('', SERVIDOR . '');
 
 # Controladores/repositorios.

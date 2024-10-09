@@ -18,6 +18,12 @@ if ($secciones[0] == 'swiftcode') {
         $vista_de_usuario = 'publico/vistas/inicio.php';
     } else if (count($secciones) == 2) {
         switch ($secciones[1]) {
+            case 'pruebas':
+                $vista_de_usuario = 'php/scripts/pruebas.php';
+                break;
+            case 'guia-de-usuario':
+                $vista_de_usuario = 'publico/vistas/guia_de_usuario.php';
+                break;
             case 'ingresar':
                 $vista_de_usuario = 'publico/vistas/ingresar.php';
                 break;
@@ -59,9 +65,6 @@ if ($secciones[0] == 'swiftcode') {
                 break;
             case 'enviar-correo':
                 $vista_de_usuario = 'php/scripts/enviar_correo.php';
-                break;
-            case 'pruebas':
-                $vista_de_usuario = 'php/scripts/pruebas.php';
                 break;
         }
     }

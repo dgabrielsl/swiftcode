@@ -1,30 +1,5 @@
 <?php
 class repositorio_transacciones {
-    public static function consultar_registros($conexion, $id){
-        $usuarios = [];
-        if (isset($conexion)) {
-            try {
-                include_once './php/modelos/modelo_usuario.inc.php';
-
-                $sql = 'SELECT * FROM usuarios WHERE id = :id';
-                $sentencia = $conexion -> prepare($sql);
-                $sentencia -> bindParam(':id', $id, PDO::PARAM_INT);
-                $sentencia -> execute();
-                $respuesta = $sentencia -> fetchAll();
-                
-                if (count($respuesta)) {
-                    foreach ($respuesta as $row) {
-                        $usuarios[] = new modelo_usuario($row['id'], $row['correo'], $row['usuario'], $row['clave'], $row['nombre'], $row['apellido'], $row['apellido_2'], $row['telefono'], $row['telefono_2'], $row['empresa'], $row['correo_empresa'], $row['cuenta'], $row['estado'], $row['creado']);
-                    }
-                }
-            } catch (PDOException $ex) {
-                print 'ERROR: ' . $ex -> getMessage();
-            }
-        }
-
-        return $usuarios;
-    }
-
     public static function registrar_transaccion_usuario($conexion, $registro) {
         if (isset($conexion)) {
             try {

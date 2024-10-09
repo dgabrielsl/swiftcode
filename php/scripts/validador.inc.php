@@ -3,20 +3,20 @@ include_once './php/repositorios/repositorio_usuarios.inc.php';
 include_once './php/scripts/texto_aleatorio.inc.php';
 
 class validador {
-    private $correo; private $usuario;
+    private $correo; private $alias;
     private $nombre; private $apellido; private $apellido_2;
     private $telefono; private $telefono_2;
     private $empresa; private $correo_empresa;
     private $clave; private $clave_2;
 
-    function __construct($correo = '', $usuario = '', $nombre = '', $apellido = '', $apellido_2 = '', $telefono = '', $telefono_2 = '', $empresa = '', $correo_empresa = '', $clave = '', $clave_2 = '', $consumible = '') {
+    function __construct($correo = '', $alias = '', $nombre = '', $apellido = '', $apellido_2 = '', $telefono = '', $telefono_2 = '', $empresa = '', $correo_empresa = '', $clave = '', $clave_2 = '', $consumible = '') {
         $this -> correo = $correo;
-        $this -> usuario = $usuario;
+        $this -> alias = $alias;
         $this -> nombre = $nombre;
         $this -> apellido = $apellido;
         $this -> apellido_2 = $apellido_2;
         $this -> telefono = $telefono;
-        $this -> telefono_2 = $telefono_2;
+        $this -> telefono_2 = $telefono_empresa;
         $this -> empresa = $empresa;
         $this -> correo_empresa = $correo_empresa;
         $this -> clave = $clave;
@@ -136,7 +136,7 @@ class validador {
     public static function validar_usuario($conexion, $usuario) {
         $mensajes = [];
 
-            if (repositorio_usuarios::usuario_existe($conexion, $usuario)) {
+            if (repositorio_usuarios::alias_existe($conexion, $usuario)) {
                 $mensajes[] = 'Este nombre de usuario ya se encuentra en uso.';
                 $mensajes[] = 'Si dejas el campo en blanco generamos uno automáticamente, puedes modificarlo después.';
                 return $mensajes;
